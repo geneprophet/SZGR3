@@ -1,0 +1,41 @@
+server:
+  port: 9500
+  servlet:
+    context-path: /szgr/api
+spring:
+  mvc:
+    contentnegotiation:
+      favor-parameter: false
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.129.144:3306/szGR?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        session_factory:
+          session_scoped_interceptor: "cn.ac.cncb.ngdc.szgr.Interceptor.AutoTableNameInterceptor"
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+    servlet:
+      content-type: text/html
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+      additional-paths: src/main/java #重启目录
+      exclude: WEB-INF/**
+    freemarker:
+      cache: false    #页面不加载缓存，修改即时生效
+  sql:
+    init:
+      platform: mysql
+
+
